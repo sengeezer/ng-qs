@@ -1,4 +1,4 @@
 # ng-qs
 ## My Angular2 quickstart repo
 
-Designed to provide an anchor while Angular2 development continues.
+This is the tour of heroes tutorial branch. Deviations from Angular2 original are my own.
