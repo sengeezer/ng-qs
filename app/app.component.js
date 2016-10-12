@@ -8,66 +8,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var HEROES = [
-    {
-        id: 11,
-        name: 'Mr. Nicer'
-    },
-    {
-        id: 12,
-        name: 'Narcos'
-    },
-    {
-        id: 13,
-        name: 'Bombastic'
-    },
-    {
-        id: 14,
-        name: 'Celebrittas'
-    },
-    {
-        id: 15,
-        name: 'Magnet B'
-    },
-    {
-        id: 16,
-        name: 'OseMan'
-    },
-    {
-        id: 17,
-        name: 'Dynamita'
-    },
-    {
-        id: 18,
-        name: 'Dr UP'
-    },
-    {
-        id: 19,
-        name: 'Magman'
-    },
-    {
-        id: 20,
-        name: 'Sandwich'
-    }
-];
+var core_1 = require("@angular/core");
+var hero_service_1 = require("./hero.service");
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(heroService) {
+        this.heroService = heroService;
         this.title = 'Tour of Heroes';
-        this.heroes = HEROES;
     }
+    AppComponent.prototype.getHeroes = function () {
+        var _this = this;
+        this.heroService.getHeroes().then(function (heroes) { return _this.heroes = heroes; });
+    };
+    AppComponent.prototype.ngOnInit = function () {
+        this.getHeroes();
+    };
     AppComponent.prototype.onSelect = function (hero) {
         this.selectedHero = hero;
     };
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'my-app',
-            template: "\n    <h1>{{title}}</h1>\n    <h2>My Heroes</h2>\n    <ul class=\"heroes\">\n      <li *ngFor=\"let hero of heroes\" [class.selected]=\"hero === selectedHero\" (click)=\"onSelect(hero)\">\n        <span class=\"badge\">{{hero.id}}</span>\n        {{hero.name}}\n      </li>\n    </ul>\n    <my-hero-detail [hero]=\"selectedHero\"></my-hero-detail>\n    ",
-            styles: ["\n      .selected {\n        background-color: #cfd8dc !important;\n        color: #fff;\n      }\n\n      .heroes {\n        margin: 0 0 2em;\n        list-style-type: none;\n        padding: 0;\n        width: 15em;\n      }\n\n      .heroes li {\n        cursor: pointer;\n        position: relative;\n        left: 0;\n        background-color: #eee;\n        margin: .5em;\n        padding: .3em 0;\n        height: 1.6em;\n        border-radius: 4px;\n      }\n\n      .heroes li.selected:hover {\n        background-color: #bbd8dc !important;\n        color: #fff;\n      }\n\n      .heroes li:hover {\n        color: #607d8b;\n        background-color: #ddd;\n        left: .1em;\n      }\n\n      .heroes .text {\n        position: relative;\n        top: -3px;\n      }\n\n      .heroes .badge {\n        display: inline-block;\n        font-size: small;\n        color: white;\n        padding: 0.8em 0.7em 0 0.7em;\n        background-color: #607d8b;\n        line-height: 1em;\n        position: relative;\n        left: -1px;\n        top: -4px;\n        height: 1.8em;\n        margin-right: .8em;\n        border-radius: 4px 0 0 4px;\n      }\n    "]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
     return AppComponent;
 }());
+AppComponent = __decorate([
+    core_1.Component({
+        selector: 'my-app',
+        template: "\n    <h1>{{title}}</h1>\n    <h2>My Heroes</h2>\n    <ul class=\"heroes\">\n      <li *ngFor=\"let hero of heroes\" [class.selected]=\"hero === selectedHero\" (click)=\"onSelect(hero)\">\n        <span class=\"badge\">{{hero.id}}</span>\n        {{hero.name}}\n      </li>\n    </ul>\n    <my-hero-detail [hero]=\"selectedHero\"></my-hero-detail>\n    ",
+        styles: ["\n      .selected {\n        background-color: #cfd8dc !important;\n        color: #fff;\n      }\n\n      .heroes {\n        margin: 0 0 2em;\n        list-style-type: none;\n        padding: 0;\n        width: 15em;\n      }\n\n      .heroes li {\n        cursor: pointer;\n        position: relative;\n        left: 0;\n        background-color: #eee;\n        margin: .5em;\n        padding: .3em 0;\n        height: 1.6em;\n        border-radius: 4px;\n      }\n\n      .heroes li.selected:hover {\n        background-color: #bbd8dc !important;\n        color: #fff;\n      }\n\n      .heroes li:hover {\n        color: #607d8b;\n        background-color: #ddd;\n        left: .1em;\n      }\n\n      .heroes .text {\n        position: relative;\n        top: -3px;\n      }\n\n      .heroes .badge {\n        display: inline-block;\n        font-size: small;\n        color: white;\n        padding: 0.8em 0.7em 0 0.7em;\n        background-color: #607d8b;\n        line-height: 1em;\n        position: relative;\n        left: -1px;\n        top: -4px;\n        height: 1.8em;\n        margin-right: .8em;\n        border-radius: 4px 0 0 4px;\n      }\n    "],
+        providers: [hero_service_1.HeroService]
+    }),
+    __metadata("design:paramtypes", [hero_service_1.HeroService])
+], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map
